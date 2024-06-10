@@ -18,6 +18,8 @@ const redirectToPredefinedURL = (username) => {
         "liltashmae2":  "https://onlyfans.com/liltashmae/c2",
         "liltashmae1":  "https://onlyfans.com/liltashmae/c1",
         "liltashmae4":  "https://onlyfans.com/liltashmae/c4",
+        "liltashmae":  "https://onlyfans.com/liltashmae",
+
     };
 
     return urlMapping[username]; // Default URL if username not found
