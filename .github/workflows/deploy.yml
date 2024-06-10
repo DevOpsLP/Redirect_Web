@@ -1,0 +1,47 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Install SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+        shell: bash
+
+      - name: Add SSH key to the agent
+        run: |
+          eval "$(ssh-agent -s)"
+          ssh-add ~/.ssh/deploy_key
+
+      - name: Add EC2 instance to known hosts
+        run: ssh-keyscan -H ec2-3-17-161-154.us-east-2.compute.amazonaws.com >> ~/.ssh/known_hosts
+
+      - name: Deploy to EC2
+        run: |
+          ssh -i ~/.ssh/deploy_key ubuntu@ec2-3-17-161-154.us-east-2.compute.amazonaws.com 'bash -s' << 'EOF'
+            cd ~
+            if [ -d "redirect_web" ]; then
+              cd redirect_web
+              git pull
+            else
+              git clone https://github.com/DevOpsLP/Redirect_Web.git redirect_web
+              cd redirect_web
+            fi
+            npm install
+            pm2 stop all || true
+            pm2 start index.js --name redirect_web
+          EOF
