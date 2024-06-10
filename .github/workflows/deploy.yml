@@ -28,13 +28,13 @@ jobs:
           ssh-add ~/.ssh/deploy_key
 
       - name: Add EC2 instance to known hosts
-        run: ssh-keyscan -H your-elastic-ip >> ~/.ssh/known_hosts
+        run: ssh-keyscan -H ec2-3-137-112-31.us-east-2.compute.amazonaws.com >> ~/.ssh/known_hosts
 
       - name: Pull latest changes and restart PM2
         run: |
-          ssh -i ~/.ssh/deploy_key ubuntu@your-elastic-ip 'bash -s' << 'EOF'
+          ssh -i ~/.ssh/deploy_key ubuntu@ec2-3-137-112-31.us-east-2.compute.amazonaws.com 'bash -s' << 'EOF'
             cd ~/Redirect_Web
             git pull origin main
             npm install
-            pm2 restart redirect_web
+            pm2 restart redirect_web || pm2 start app.js --name redirect_web
           EOF
