@@ -30,18 +30,11 @@ jobs:
       - name: Add EC2 instance to known hosts
         run: ssh-keyscan -H ec2-3-17-161-154.us-east-2.compute.amazonaws.com >> ~/.ssh/known_hosts
 
-      - name: Deploy to EC2
+      - name: Pull latest changes and restart PM2
         run: |
           ssh -i ~/.ssh/deploy_key ubuntu@ec2-3-17-161-154.us-east-2.compute.amazonaws.com 'bash -s' << 'EOF'
-            cd ~
-            if [ -d "redirect_web" ]; then
-              cd redirect_web
-              git pull
-            else
-              git clone https://github.com/DevOpsLP/Redirect_Web.git redirect_web
-              cd redirect_web
-            fi
+            cd ~/Redirect_Web
+            git pull origin main
             npm install
-            pm2 stop all || true
-            pm2 start index.js --name redirect_web
+            pm2 restart redirect_web
           EOF
