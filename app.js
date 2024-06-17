@@ -14,7 +14,7 @@ const redirectToPredefinedURL = (username) => {
         'luna': 'https://onlyfans.com/lunabelle/c17',
         'hailey': 'https://onlyfans.com/hayley_summers/c9',
         'alexandra': 'https://onlyfans.com/alexandraonlyf/c2',
-        "liltashmae3":  "https://onlyfans.com/liltashmae/c3",
+        "liltashmae3":  "https://onlyfans.com/liltashmae/c9",
         "liltashmae2":  "https://onlyfans.com/liltashmae/c2",
         "liltashmae1":  "https://onlyfans.com/liltashmae/c1",
         "liltashmae4":  "https://onlyfans.com/liltashmae/c4",
