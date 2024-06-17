@@ -8,17 +8,14 @@ const redirectToPredefinedURL = (username) => {
     // Here, you map usernames to their URLs. This is a basic example.
     // You might want to store this mapping in a database or an external configuration for scalability.
     const urlMapping = {
-        'demi': 'https://onlyfans.com/dleahhx/c11',
-        'evelyn': 'https://onlyfans.com/cutieevelynn/c12',
-        'lucero': 'https://onlyfans.com/lovedepenta/c4',
-        'luna': 'https://onlyfans.com/lunabelle/c17',
-        'hailey': 'https://onlyfans.com/hayley_summers/c9',
+        'jesica': 'https://onlyfans.com/jesicafitness/c3',
         'alexandra': 'https://onlyfans.com/alexandraonlyf/c2',
         "liltashmae3":  "https://onlyfans.com/liltashmae/c9",
         "liltashmae2":  "https://onlyfans.com/liltashmae/c2",
         "liltashmae1":  "https://onlyfans.com/liltashmae/c1",
         "liltashmae4":  "https://onlyfans.com/liltashmae/c4",
         "liltashmae":  "https://onlyfans.com/liltashmae",
+        "monica": "https://onlyfans.com/monicapeachy/c51",
 
     };
 
